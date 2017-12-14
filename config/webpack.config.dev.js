@@ -188,6 +188,20 @@ module.exports = {
               },
             ],
           },
+          {
+            test: /\.sass$/,
+            use: [ {
+              loader: require.resolve( 'style-loader' ) // creates style nodes from JS strings
+            }, {
+              loader: require.resolve( 'css-loader' ), // translates CSS into CommonJS
+              options: {
+                modules: true,
+                localIdentName: '[path][name]__[local]--[hash:base64:5]'
+              }
+            }, {
+              loader: require.resolve( 'sass-loader' ) // compiles Sass to CSS
+            }]
+          },
           // "file" loader makes sure those assets get served by WebpackDevServer.
           // When you `import` an asset, you get its (virtual) filename.
           // In production, they would get copied to the `build` folder.
