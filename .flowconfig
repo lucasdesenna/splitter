@@ -1,11 +1,16 @@
 [ignore]
 
 [include]
+src
 
 [libs]
 
 [lints]
 
 [options]
+module.file_ext=.css
+module.file_ext=.sass
+module.name_mapper= '^(\w+)$' -> '<PROJECT_ROOT>/\1'
+module.name_mapper= '^(\w+)$' -> '<PROJECT_ROOT>/\1'
 
 [strict]
