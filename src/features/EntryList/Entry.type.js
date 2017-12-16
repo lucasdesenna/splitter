@@ -1,7 +1,10 @@
 // @flow
+import type { UserType } from 'User.type';
 
 export type EntryType = {
-  value: number,
-  currencySymbol: string,
-  description: string
+    tags: string[],
+    owner: UserType,
+    value: number,
+    currencySymbol: string,
+    description: string
 };
