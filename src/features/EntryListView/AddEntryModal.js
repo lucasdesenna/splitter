@@ -1,0 +1,111 @@
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+
+import type { EntryDataType } from 'types/Entry.type';
+
+import FlatButton from 'material-ui/FlatButton';
+import Dialog from 'material-ui/Dialog';
+import TextField from 'material-ui/TextField';
+
+import { addEntry } from 'containers/activeCircle.actions';
+
+const mapStateToProps = state => ({
+    activeUser: state.activeUser
+});
+
+const mapDispatchToProps = dispatch => ({
+    dispatchAddEntry: (entryData: EntryDataType) => {
+        dispatch(addEntry(entryData));
+    }
+});
+
+const isDescriptionValid = entry =>
+    (entry.description: string) && entry.description.length >= 5;
+
+const isValueValid = entry =>
+    (entry.value: string) && parseFloat(entry.value) > 0;
+
+const validateEntry = entry => isDescriptionValid(entry) && isValueValid(entry);
+
+class AddEntryModal extends Component {
+    state = {
+        entry: {},
+        isEntryValid: false
+    };
+
+    handleEntrySubmission = () => {
+        const newEntry = {
+            ...this.state.entry,
+            userId: 'lucas'
+        };
+
+        this.props.dispatchAddEntry(newEntry);
+        this.props.onRequestClose();
+    };
+
+    handleEntryDescriptionChange = event => {
+        const newEntry = {
+            ...this.state.entry,
+            description: event.target.value
+        };
+
+        this.setState({
+            entry: newEntry,
+            isEntryValid: validateEntry(newEntry)
+        });
+    };
+
+    handleEntryValueChange = event => {
+        const newEntry = {
+            ...this.state.entry,
+            value: parseFloat(event.target.value)
+        };
+
+        this.setState({
+            entry: newEntry,
+            isEntryValid: validateEntry(newEntry)
+        });
+    };
+
+    render() {
+        const actions = [
+            <FlatButton
+                label="Cancel"
+                primary={true}
+                onClick={this.props.onRequestClose}
+            />,
+            <FlatButton
+                label="Add"
+                primary={true}
+                onClick={this.handleEntrySubmission}
+                disabled={!this.state.isEntryValid}
+            />
+        ];
+
+        return (
+            <Dialog
+                key="addEntryDialog"
+                title="Add Entry"
+                actions={actions}
+                modal={false}
+                open={this.props.isModalOpen}
+            >
+                <TextField
+                    id="entryDescription"
+                    hintText="Description"
+                    fullWidth={true}
+                    onChange={this.handleEntryDescriptionChange}
+                />
+                <TextField
+                    id="entryValue"
+                    hintText="Value"
+                    type="number"
+                    fullWidth={true}
+                    onChange={this.handleEntryValueChange}
+                />
+            </Dialog>
+        );
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddEntryModal);

@@ -1,16 +1,13 @@
 [ignore]
 
 [include]
-src
+./src
 
 [libs]
 
-[lints]
-
 [options]
-module.file_ext=.css
-module.file_ext=.sass
-module.name_mapper= '^(\w+)$' -> '<PROJECT_ROOT>/\1'
-module.name_mapper= '^(\w+)$' -> '<PROJECT_ROOT>/\1'
-
-[strict]
+module.name_mapper.extension='css' -> '<PROJECT_ROOT>/config/CSSModule.flow.js'
+module.name_mapper.extension='sass' -> '<PROJECT_ROOT>/config/CSSModule.flow.js'
+module.system.node.resolve_dirname=node_modules
+module.system.node.resolve_dirname=src
+unsafe.enable_getters_and_setters=true
