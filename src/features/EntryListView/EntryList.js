@@ -9,11 +9,16 @@ type PropsType = {
     entries: EntryType[]
 };
 
+const sortByTimestamp = (a, b) =>
+    new Date(a.isoTimestamp).getTime() > new Date(b.isoTimestamp).getTime();
+
 const entryList = (props: PropsType) => (
     <ul className={styles.EntryList}>
-        {props.entries.map((entry, index) => (
-            <Entry key={`entry-${index}`} entryData={entry} />
-        ))}
+        {props.entries
+            .sort(sortByTimestamp)
+            .map((entry, index) => (
+                <Entry key={`entry-${index}`} entryData={entry} />
+            ))}
     </ul>
 );
 

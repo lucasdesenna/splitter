@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import type { EntryDataType } from 'types/Entry.type';
-
 import FlatButton from 'material-ui/FlatButton';
 import Dialog from 'material-ui/Dialog';
 import TextField from 'material-ui/TextField';
 
+import EntryRepository from 'repositories/Entry.repo';
 import { addEntry } from 'containers/activeCircle.actions';
 
 const mapStateToProps = state => ({
@@ -14,8 +13,9 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    dispatchAddEntry: (entryData: EntryDataType) => {
+    dispatchAddEntry: entryData => {
         dispatch(addEntry(entryData));
+        EntryRepository.add(entryData);
     }
 });
 
