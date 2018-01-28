@@ -9,11 +9,11 @@ import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 
 ReactDOM.render(
-    <MuiThemeProvider>
-        <Provider store={store}>
-            <App />
-        </Provider>
-    </MuiThemeProvider>,
-    document.getElementById('root')
+  <MuiThemeProvider>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </MuiThemeProvider>,
+  document.getElementById('root')
 );
 registerServiceWorker();

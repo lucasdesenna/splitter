@@ -8,18 +8,18 @@ import type { EntryDataType } from 'types/Entry.type';
 
 export const SET_ACTIVE_CIRCLE = 'SET_ACTIVE_CIRCLE';
 export const setActiveCircle = (circleData: CircleDataType) => ({
-    type: SET_ACTIVE_CIRCLE,
-    circle: new CircleType(circleData)
+  type: SET_ACTIVE_CIRCLE,
+  circle: new CircleType(circleData),
 });
 
 export const ADD_USER = 'ADD_USER';
 export const addUser = (userData: UserDataType) => ({
-    type: ADD_USER,
-    user: new UserType(userData)
+  type: ADD_USER,
+  user: new UserType(userData),
 });
 
 export const ADD_ENTRY = 'ADD_ENTRY';
 export const addEntry = (entryData: EntryDataType) => ({
-    type: ADD_ENTRY,
-    entry: new EntryType(entryData)
+  type: ADD_ENTRY,
+  entry: new EntryType(entryData),
 });

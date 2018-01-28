@@ -8,21 +8,21 @@ import WhoSpentWhat from './WhoSpentWhat';
 import WhoOwnsWhatToWhom from './WhoOwnsWhatToWhom';
 
 const mapStateToProps = state => ({
-    activeCircle: state.activeCircle
+  activeCircle: state.activeCircle,
 });
 
 type PropsType = {
-    activeCircle: CircleType
+  activeCircle: CircleType,
 };
 
 const OverviewView = (props: PropsType) =>
-    props.activeCircle ? (
-        <div>
-            <WhoSpentWhat users={props.activeCircle.users} />
-            <WhoOwnsWhatToWhom circle={props.activeCircle} />
-        </div>
-    ) : (
-        ''
-    );
+  props.activeCircle ? (
+    <div>
+      <WhoSpentWhat users={props.activeCircle.users} />
+      <WhoOwnsWhatToWhom circle={props.activeCircle} />
+    </div>
+  ) : (
+    ''
+  );
 
 export default connect(mapStateToProps)(OverviewView);

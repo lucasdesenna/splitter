@@ -1,6 +1,0 @@
-{
-  "extends": "react-app",
-  "rules": {
-    "array-callback-return": 0
-  }
-}
