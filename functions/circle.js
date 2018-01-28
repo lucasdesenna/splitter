@@ -25,16 +25,17 @@ const _getEntries = circle => {
 
 const get = (request, response) => {
   if (request.query.id) {
-    firebase
+    return firebase
       .database()
       .ref(`/circles/${request.query.id}`)
       .once('value')
       .then(snapshot => {
-        let circle = snapshot.val();
+        const circle = snapshot.val();
 
         return Promise.all([_getUsers(circle), _getEntries(circle)])
           .then(data => {
-            response.send({ ...circle, users: data[0], entries: data[1] });
+            console.log(data[0]);
+             response.send({ ...circle, users: data[0], entries: data[1] });
           })
           .catch(error => response.status(500).send(error));
       })

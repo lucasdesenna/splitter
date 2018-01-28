@@ -15,9 +15,9 @@ const mapDispatchToProps = dispatch => ({
 });
 class App extends Component {
   componentDidMount() {
-    CircleRepository.get().then(circleData => {
-      this.props.dispatchSetActiveCircle(circleData);
-    });
+    // CircleRepository.get().then(circleData => {
+    //   this.props.dispatchSetActiveCircle(circleData);
+    // });
   }
 
   render() {
