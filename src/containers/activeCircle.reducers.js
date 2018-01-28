@@ -1,13 +1,11 @@
 import * as actions from './activeCircle.actions';
 
-import fakeCircle from './fakeCircle';
 import CircleType from 'types/Circle.type';
-import EntryType from 'types/Entry.type';
 
-const activeCircle = (activeCircle = fakeCircle, action) => {
+const activeCircle = (activeCircle = {}, action) => {
   switch (action.type) {
     case actions.SET_ACTIVE_CIRCLE:
-      return action.circle;
+      return new CircleType(action.circle);
 
     case actions.ADD_USER:
       return new CircleType({
@@ -18,7 +16,7 @@ const activeCircle = (activeCircle = fakeCircle, action) => {
     case actions.ADD_ENTRY:
       return new CircleType({
         ...activeCircle,
-        entries: [...activeCircle.entries, new EntryType(action.entry)],
+        entries: [...activeCircle.entries, action.entry],
       });
 
     default:

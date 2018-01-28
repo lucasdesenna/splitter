@@ -52,7 +52,7 @@ class CircleType {
       }
     });
 
-    this.entries = entries;
+    // this.entries = entries;
   }
 
   _updateUsersRelativeValue(): void {

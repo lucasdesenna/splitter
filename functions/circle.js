@@ -25,20 +25,25 @@ const _getEntries = circle => {
 
 const get = (request, response) => {
   if (request.query.id) {
+    let circle;
     firebase
       .database()
       .ref(`/circles/${request.query.id}`)
       .once('value')
       .then(snapshot => {
-        let circle = snapshot.val();
+        circle = snapshot.val();
 
-        return Promise.all([_getUsers(circle), _getEntries(circle)])
-          .then(data => {
-            response.send({ ...circle, users: data[0], entries: data[1] });
-          })
-          .catch(error => response.status(500).send(error));
+        return Promise.all([_getUsers(circle), _getEntries(circle)]);
       })
-      .catch(error => response.status(500).send(error));
+      .then(data => {
+        circle = { ...circle, users: data[0], entries: data[1] };
+        response.send(circle);
+        return console.log(circle);
+      })
+      .catch(error => {
+        response.status(500).send(error);
+        return console.error(error);
+      });
   } else {
     response.status(500).send('missing param: "id"');
   }

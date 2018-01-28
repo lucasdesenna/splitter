@@ -1,3 +1,4 @@
+// @flow
 import React from 'react';
 
 import styles from './EntryList.sass';
@@ -8,8 +9,8 @@ type PropsType = {
   entries: EntryType[],
 };
 
-const sortByTimestamp = (a, b) =>
-  new Date(a.isoTimestamp).getTime() > new Date(b.isoTimestamp).getTime();
+const sortByTimestamp = (a: EntryType, b: EntryType): number =>
+  new Date(a.isoTimestamp).getTime() - new Date(b.isoTimestamp).getTime();
 
 const entryList = (props: PropsType) => (
   <ul className={styles.EntryList}>

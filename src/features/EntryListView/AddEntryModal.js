@@ -5,7 +5,7 @@ import FlatButton from 'material-ui/FlatButton';
 import Dialog from 'material-ui/Dialog';
 import TextField from 'material-ui/TextField';
 
-import EntryRepository from 'repositories/Entry.repo';
+// import EntryRepository from 'repositories/Entry.repo';
 import { addEntry } from 'containers/activeCircle.actions';
 
 const mapStateToProps = state => ({
@@ -15,7 +15,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   dispatchAddEntry: entryData => {
     dispatch(addEntry(entryData));
-    EntryRepository.add(entryData);
+    // EntryRepository.add(entryData);
   },
 });
 
@@ -36,7 +36,7 @@ class AddEntryModal extends Component {
   handleEntrySubmission = () => {
     const newEntry = {
       ...this.state.entry,
-      userId: 'lucas',
+      userId: this.props.activeUser.id,
     };
 
     this.props.dispatchAddEntry(newEntry);

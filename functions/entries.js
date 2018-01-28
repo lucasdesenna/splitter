@@ -9,27 +9,16 @@ const get = (request, response) => {
       .orderByChild('circleId')
       .equalTo(request.query.id)
       .once('value')
-      .then(snapshot => response.send(snapshot.val()))
+      .then(snapshot => {
+        const entries = snapshot.val();
+        response.send(entries);
+        return console.log(entries);
+      })
       .catch(reason => console.warn(reason));
   } else {
     response.status(500).send('missing param: "id"');
   }
 };
-
-exports.getEntriesByUser = functions.https.onRequest((request, response) => {
-  if (request.query.id) {
-    firebase
-      .database()
-      .ref(`/entries`)
-      .orderByChild('userId')
-      .equalTo(request.query.id)
-      .once('value')
-      .then(snapshot => response.send(snapshot.val()))
-      .catch(reason => console.warn(reason));
-  } else {
-    response.status(500).send('missing param: "id"');
-  }
-});
 
 const post = (request, response) => {
   if (request.body) {
@@ -42,9 +31,11 @@ const post = (request, response) => {
       .set(request.body)
       .then(sucess => {
         response.status(200).send(sucess);
+        return console.log(sucess);
       })
       .catch(error => {
         response.status(500).send(error);
+        return console.error(error);
       });
   } else {
     response.status(500).send('missing param: "body"');
@@ -63,5 +54,25 @@ exports.entries = functions.https.onRequest((request, response) => {
 
     default:
       response.end();
+  }
+});
+
+exports.getEntriesByUser = functions.https.onRequest((request, response) => {
+  if (request.query.id) {
+    firebase
+      .database()
+      .ref(`/entries`)
+      .orderByChild('userId')
+      .equalTo(request.query.id)
+      .once('value')
+      .then(snapshot => {
+        const entries = snapshot.val();
+
+        response.send(entries);
+        return console.log(entries);
+      })
+      .catch(reason => console.warn(reason));
+  } else {
+    response.status(500).send('missing param: "id"');
   }
 });

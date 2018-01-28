@@ -1,28 +1,38 @@
 // @flow
-import React from 'react';
-import { connect } from 'react-redux';
+import React, { Component } from 'react';
+
+import Drawer from 'material-ui/Drawer';
 
 import CircleType from 'types/Circle.type';
 
 import WhoSpentWhat from './WhoSpentWhat';
 import WhoOwnsWhatToWhom from './WhoOwnsWhatToWhom';
 
-const mapStateToProps = state => ({
-  activeCircle: state.activeCircle,
-});
-
-type PropsType = {
-  activeCircle: CircleType,
+type Props = {
+  circle: CircleType,
 };
 
-const OverviewView = (props: PropsType) =>
-  props.activeCircle ? (
-    <div>
-      <WhoSpentWhat users={props.activeCircle.users} />
-      <WhoOwnsWhatToWhom circle={props.activeCircle} />
-    </div>
-  ) : (
-    ''
-  );
+class OverviewView extends Component<Props> {
+  state = {
+    isDrawerOpen: false,
+  };
 
-export default connect(mapStateToProps)(OverviewView);
+  handleToggleDrawer = () =>
+    this.setState({ isDrawerOpen: !this.state.isDrawerOpen });
+
+  render() {
+    return (
+      <div>
+        <div onClick={this.handleToggleDrawer}>BARRINHA BONITA</div>
+        <Drawer width={200} openSecondary={true} open={this.state.isDrawerOpen}>
+          <div onClick={this.handleToggleDrawer}>
+            <WhoSpentWhat users={this.props.circle.users} />
+            <WhoOwnsWhatToWhom circle={this.props.circle} />
+          </div>
+        </Drawer>
+      </div>
+    );
+  }
+}
+
+export default OverviewView;

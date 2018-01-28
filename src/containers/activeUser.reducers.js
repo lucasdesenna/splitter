@@ -1,13 +1,12 @@
 import * as actions from './activeUser.actions';
 
-import { lucas } from './fakeCircle';
+import UserType from 'types/User.type';
+import { fakeUserData } from 'containers/fakeData';
 
-const activeUser = (activeUser = lucas, action) => {
+const activeUser = (activeUser = new UserType(fakeUserData), action) => {
   switch (action.type) {
     case actions.SET_ACTIVE_USER:
-      return {
-        activeUser: action.user,
-      };
+      return new UserType(action.user);
 
     default:
       return activeUser;
