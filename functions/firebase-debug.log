@@ -1,0 +1,36 @@
+[debug] [2018-01-28T06:17:00.361Z] ----------------------------------------------------------------------
+[debug] [2018-01-28T06:17:00.363Z] Command:       /home/lucas/.nvm/versions/node/v8.5.0/bin/node /home/lucas/.nvm/versions/node/v8.5.0/bin/firebase serve --only functions
+[debug] [2018-01-28T06:17:00.363Z] CLI Version:   3.17.3
+[debug] [2018-01-28T06:17:00.363Z] Platform:      linux
+[debug] [2018-01-28T06:17:00.363Z] Node Version:  v8.5.0
+[debug] [2018-01-28T06:17:00.363Z] Time:          Sun Jan 28 2018 04:17:00 GMT-0200 (-02)
+[debug] [2018-01-28T06:17:00.363Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2018-01-28T06:17:00.371Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-01-28T06:17:00.371Z] > authorizing via signed-in user
+[debug] [2018-01-28T06:17:00.373Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/splitter-7e59a  
+  
+ Sun Jan 28 2018 04:17:00 GMT-0200 (-02)
+[debug] [2018-01-28T06:17:01.164Z] <<< HTTP RESPONSE 200
+[debug] [2018-01-28T06:17:01.164Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/splitter-7e59a/tokens  
+  
+ Sun Jan 28 2018 04:17:01 GMT-0200 (-02)
+[debug] [2018-01-28T06:17:01.860Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from '/home/lucas/Playground/splitter'...
+[info] 
+[info] i  functions: Preparing to emulate functions.
+[debug] [2018-01-28T06:17:02.083Z] Fetching environment
+[debug] [2018-01-28T06:17:02.084Z] >>> HTTP REQUEST GET https://appengine.googleapis.com/v1/apps/splitter-7e59a  
+  
+ Sun Jan 28 2018 04:17:02 GMT-0200 (-02)
+[debug] [2018-01-28T06:17:02.084Z] >>> HTTP REQUEST GET https://apikeys.googleapis.com/v1/projects/splitter-7e59a/apiKeys  
+  
+ Sun Jan 28 2018 04:17:02 GMT-0200 (-02)
+[debug] [2018-01-28T06:17:03.039Z] <<< HTTP RESPONSE 200
+[debug] [2018-01-28T06:17:03.266Z] <<< HTTP RESPONSE 200
+[debug] [2018-01-28T06:17:03.266Z] Starting @google-cloud/functions-emulator
+[debug] [2018-01-28T06:17:04.334Z] Parsing function triggers
+[info] ✔  functions: circle: http://localhost:5000/splitter-7e59a/us-central1/circle
+[info] ✔  functions: entries: http://localhost:5000/splitter-7e59a/us-central1/entries
+[info] ✔  functions: getEntriesByUser: http://localhost:5000/splitter-7e59a/us-central1/getEntriesByUser

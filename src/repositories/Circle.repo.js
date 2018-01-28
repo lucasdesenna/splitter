@@ -4,7 +4,7 @@ const defaultCircleId = '0bd010f641291705095902aaebd41824';
 
 const circleRepository = {
   get: id => {
-    return BackendService.get('/getCircle', {
+    return BackendService.get('/circle', {
       params: {
         id: id || defaultCircleId,
       },

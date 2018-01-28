@@ -7,6 +7,9 @@ import store from 'store';
 import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
+import FirebaseService from 'services/Firebase.service';
+
+FirebaseService.init();
 
 ReactDOM.render(
   <MuiThemeProvider>
