@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import './App.css';
+import styles from './App.sass';
 import EntryListView from './features/EntryListView/EntryListView';
 import OverviewView from './features/OverviewView/OverviewView';
 
@@ -31,7 +31,7 @@ class App extends Component {
 
   render() {
     return this.isCircleLoaded() ? (
-      <div className="App">
+      <div className={styles.App}>
         <EntryListView circle={this.props.activeCircle} />
         <OverviewView circle={this.props.activeCircle} />
       </div>

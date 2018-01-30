@@ -1,6 +1,7 @@
 // @flow
 import React, { Component } from 'react';
 
+import styles from './EntryListView.sass';
 import EntryList from './EntryList';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
@@ -23,7 +24,7 @@ class CircleView extends Component<Props> {
 
   render() {
     return this.props.circle ? (
-      <div>
+      <div className={styles.EntryListView}>
         <EntryList entries={this.props.circle.entries} />
         <FloatingActionButton
           key="addEntryButton"

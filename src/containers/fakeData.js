@@ -3,13 +3,13 @@ export const fakeCircleData = {
   name: 'Casinha',
   users: [
     {
-      color: '#432',
+      color: '#689F38',
       id: 'ce502e691b0566d339e5e7ecd3bc0205',
       memberOf: ['0bd010f641291705095902aaebd41824'],
       name: 'Aimeê Ferreira',
     },
     {
-      color: '#234',
+      color: '#FFA000',
       id: 'dc53fc4f621c80bdc2fa0329a6123708',
       memberOf: ['0bd010f641291705095902aaebd41824'],
       name: 'Lucas de Senna',

@@ -5,6 +5,7 @@ import Drawer from 'material-ui/Drawer';
 
 import CircleType from 'types/Circle.type';
 
+import OverviewBar from './OverviewBar';
 import WhoSpentWhat from './WhoSpentWhat';
 import WhoOwnsWhatToWhom from './WhoOwnsWhatToWhom';
 
@@ -13,7 +14,7 @@ type Props = {
 };
 
 class OverviewView extends Component<Props> {
-  state = {
+  state: any = {
     isDrawerOpen: false,
   };
 
@@ -23,7 +24,10 @@ class OverviewView extends Component<Props> {
   render() {
     return (
       <div>
-        <div onClick={this.handleToggleDrawer}>BARRINHA BONITA</div>
+        <OverviewBar
+          circle={this.props.circle}
+          onClick={this.handleToggleDrawer}
+        />
         <Drawer width={200} openSecondary={true} open={this.state.isDrawerOpen}>
           <div onClick={this.handleToggleDrawer}>
             <WhoSpentWhat users={this.props.circle.users} />
