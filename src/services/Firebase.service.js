@@ -13,6 +13,7 @@ const firebaseService = {
   init: () => {
     firebase.initializeApp(config);
   },
+  database: firebase.database,
 };
 
 export default firebaseService;

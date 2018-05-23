@@ -1,7 +1,7 @@
 // @flow
 import React, { Component } from 'react';
 
-import Drawer from 'material-ui/Drawer';
+import Drawer from '@material-ui/core/Drawer';
 
 import CircleType from 'types/Circle.type';
 
@@ -28,7 +28,12 @@ class OverviewView extends Component<Props> {
           circle={this.props.circle}
           onClick={this.handleToggleDrawer}
         />
-        <Drawer width={200} openSecondary={true} open={this.state.isDrawerOpen}>
+        <Drawer
+          width={200}
+          anchor="right"
+          open={this.state.isDrawerOpen}
+          onClose={this.handleToggleDrawer}
+        >
           <div onClick={this.handleToggleDrawer}>
             <WhoSpentWhat users={this.props.circle.users} />
             <WhoOwnsWhatToWhom circle={this.props.circle} />

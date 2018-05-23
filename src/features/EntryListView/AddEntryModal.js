@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import FlatButton from 'material-ui/FlatButton';
-import Dialog from 'material-ui/Dialog';
-import TextField from 'material-ui/TextField';
+import Button from '@material-ui/core/Button';
+import Dialog from '@material-ui/core/Dialog';
+import TextField from '@material-ui/core/TextField';
 
 // import EntryRepository from 'repositories/Entry.repo';
 import { addEntry } from 'containers/activeCircle.actions';
@@ -69,12 +69,12 @@ class AddEntryModal extends Component {
 
   render() {
     const actions = [
-      <FlatButton
+      <Button
         label="Cancel"
         primary={true}
         onClick={this.props.onRequestClose}
       />,
-      <FlatButton
+      <Button
         label="Add"
         primary={true}
         onClick={this.handleEntrySubmission}

@@ -6,8 +6,8 @@ import styles from './App.sass';
 import EntryListView from './features/EntryListView/EntryListView';
 import OverviewView from './features/OverviewView/OverviewView';
 
-import { fakeCircleData } from 'containers/fakeData';
-// import CircleRepository from 'repositories/Circle.repo';
+// import { fakeCircleData } from 'fakeData';
+import CircleRepository from 'repositories/Circle.repo';
 import { setActiveCircle } from 'containers/activeCircle.actions';
 
 const mapStateToProps = state => ({
@@ -21,10 +21,10 @@ const mapDispatchToProps = dispatch => ({
 });
 class App extends Component {
   componentDidMount() {
-    // CircleRepository.get().then(circleData => {
-    //   this.props.dispatchSetActiveCircle(circleData);
-    // });
-    this.props.dispatchSetActiveCircle(fakeCircleData);
+    CircleRepository.get().then(circleData => {
+      this.props.dispatchSetActiveCircle(circleData);
+    });
+    // this.props.dispatchSetActiveCircle(fakeCircleData);
   }
 
   isCircleLoaded = () => !!this.props.activeCircle.id;

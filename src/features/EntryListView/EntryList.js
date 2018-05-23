@@ -2,8 +2,8 @@
 import React from 'react';
 import moment from 'moment';
 
-import { List } from 'material-ui/List';
-import Subheader from 'material-ui/Subheader';
+import List from '@material-ui/core/List';
+import ListSubheader from '@material-ui/core/ListSubheader';
 
 import styles from './EntryList.sass';
 import Entry from './Entry';
@@ -56,7 +56,7 @@ const entriesByYearAndMont = entryList => {
     year.value.reverse().map(month => {
       entriesByYearAndMonth.push(
         <div key={`entryGroup-${year.name}-${month.name}`}>
-          <Subheader>{`${month.name} ${year.name}`}</Subheader>
+          <ListSubheader>{`${month.name} ${year.name}`}</ListSubheader>
           {month.value
             .reverse()
             .map((entry, index) => (
