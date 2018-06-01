@@ -12,10 +12,12 @@ import { EntryType } from 'types';
 
 const mapStateToProps = state => ({
   entries: Object.values(state.activeCircle.entries),
+  users: state.activeCircle.users,
 });
 
 type Props = {
   entries: EntryType[],
+  users: any,
 };
 
 class CircleView extends Component<Props> {
@@ -30,7 +32,7 @@ class CircleView extends Component<Props> {
   render() {
     return (
       <div className={sass.EntryListView}>
-        <EntryList entries={this.props.entries} />
+        <EntryList entries={this.props.entries} users={this.props.users} />
         <Button
           className={sass.addEntryButton}
           variant="fab"

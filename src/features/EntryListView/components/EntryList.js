@@ -11,11 +11,12 @@ import EntryType from 'types/Entry.type';
 
 type Props = {
   entries: EntryType[],
+  users: any,
 };
 
-const groupBy = (entrylist: EntryType[], dateFormat) => {
+const groupBy = (entries: EntryType[], dateFormat) => {
   const grouped = [];
-  const temp = entrylist.reduce((groupedList, entry) => {
+  const temp = entries.reduce((groupedList, entry) => {
     const groupValue = moment(entry.isoTimestamp).format(dateFormat);
 
     (groupedList[groupValue] = groupedList[groupValue] || []).push(entry);
@@ -33,8 +34,8 @@ const groupBy = (entrylist: EntryType[], dateFormat) => {
   return grouped;
 };
 
-const groupByYearAndMonth = (entrylist: EntryType[]): any[] => {
-  const groupedByYearAndMonth = groupBy(entrylist, 'YYYY').map(year => {
+const groupByYearAndMonth = (entries: EntryType[]): any[] => {
+  const groupedByYearAndMonth = groupBy(entries, 'YYYY').map(year => {
     year.value = groupBy(year.value, 'MMMM');
 
     return year;
@@ -46,9 +47,9 @@ const groupByYearAndMonth = (entrylist: EntryType[]): any[] => {
 const sortByTimestamp = (a: EntryType, b: EntryType): number =>
   new Date(a.isoTimestamp).getTime() - new Date(b.isoTimestamp).getTime();
 
-const entriesByYearAndMont = entryList => {
+const entriesByYearAndMont = (entries, users) => {
   const groupedByYearAndMonth = groupByYearAndMonth(
-    entryList.sort(sortByTimestamp)
+    entries.sort(sortByTimestamp)
   );
   const entriesByYearAndMonth = [];
 
@@ -60,7 +61,11 @@ const entriesByYearAndMont = entryList => {
           {month.value
             .reverse()
             .map((entry, index) => (
-              <Entry key={`entry-${month.name}-${index}`} entryData={entry} />
+              <Entry
+                key={`entry-${month.name}-${index}`}
+                entry={entry}
+                user={users[entry.userId]}
+              />
             ))}
         </div>
       );
@@ -70,8 +75,10 @@ const entriesByYearAndMont = entryList => {
   return entriesByYearAndMonth;
 };
 
-const entryList = (props: Props) => (
-  <List className={sass.EntryList}>{entriesByYearAndMont(props.entries)}</List>
+const entries = (props: Props) => (
+  <List className={sass.entries}>
+    {entriesByYearAndMont(props.entries, props.users)}
+  </List>
 );
 
-export default entryList;
+export default entries;

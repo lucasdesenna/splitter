@@ -1,5 +1,11 @@
 import React from 'react';
 
+import List from '@material-ui/core/List';
+import ListSubheader from '@material-ui/core/ListSubheader';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemAvatar from '@material-ui/core/ListItemAvatar';
+import Avatar from '@material-ui/core/Avatar';
+
 import sass from './WhoOwnsWhatToWhom.sass';
 
 const getTransactions = (creditors, debtors) => {
@@ -17,9 +23,9 @@ const getTransactions = (creditors, debtors) => {
       );
 
       transactions.push({
-        debtor: debtor.name,
+        debtor: debtors[d],
         owns: parseFloat(transactionValue.toFixed(2)),
-        creditor: creditor.name,
+        creditor: creditors[c],
       });
 
       creditor.relativeValue -= transactionValue;
@@ -36,15 +42,36 @@ const getTransactions = (creditors, debtors) => {
 
 const whoOwnsWhatToWhom = props => {
   return (
-    <ul className={sass.WhoOwnWhatToWhom}>
+    <List
+      className={sass.WhoOwnsWhatToWhom}
+      subheader={<ListSubheader>Acerto de Contas</ListSubheader>}
+    >
       {getTransactions(props.creditors, props.debtors).map(
-        (transaction, index) => (
-          <li key={`transaction-${index}`}>{`${transaction.debtor} owns ${
-            transaction.owns
-          } to ${transaction.creditor}`}</li>
+        (transaction, index, list) => (
+          <ListItem
+            key={`transaction-${index}`}
+            divider={index === list.length - 1}
+            dense={true}
+            classes={{ root: sass.transaction }}
+          >
+            <ListItemAvatar className={sass.transactionDebtor}>
+              <Avatar
+                src={transaction.debtor.avatarUrl}
+                alt={transaction.debtor.name}
+              />
+            </ListItemAvatar>
+            <div className={sass.transactionValue}>{transaction.owns}</div>
+            <div className={sass.transactionValueHead} />
+            <ListItemAvatar className={sass.transactionCreditor}>
+              <Avatar
+                src={transaction.creditor.avatarUrl}
+                alt={transaction.creditor.name}
+              />
+            </ListItemAvatar>
+          </ListItem>
         )
       )}
-    </ul>
+    </List>
   );
 };
 

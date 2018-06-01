@@ -66,7 +66,7 @@ class OverviewView extends Component<Props> {
         />
         <Drawer
           classes={{ modal: sass.OverviewModal, paper: sass.drawer }}
-          width={200}
+          width={240}
           anchor="right"
           open={this.state.isDrawerOpen}
           onClose={this.handleToggleDrawer}

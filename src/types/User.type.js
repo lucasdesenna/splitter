@@ -3,6 +3,7 @@
 export type UserDataType = {
   id: string,
   name: string,
+  avatarUrl: string,
   color: string,
   memberOf: string[],
 };
@@ -10,14 +11,16 @@ export type UserDataType = {
 class UserType {
   id: string;
   name: string;
+  avatarUrl: string;
   color: string;
   memberOf: string[];
 
-  constructor(userDataType: UserDataType) {
-    this.id = userDataType.id;
-    this.name = userDataType.name;
-    this.color = userDataType.color;
-    this.memberOf = [...userDataType.memberOf];
+  constructor(userData: UserDataType) {
+    this.id = userData.id;
+    this.name = userData.name;
+    this.avatarUrl = userData.avatarUrl;
+    this.color = userData.color;
+    this.memberOf = [...userData.memberOf];
   }
 }
 

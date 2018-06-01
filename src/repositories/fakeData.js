@@ -52,12 +52,16 @@ export const fakeUsersData = [
     color: '#689F38',
     id: 'ce502e691b0566d339e5e7ecd3bc0205',
     memberOf: ['0bd010f641291705095902aaebd41824'],
+    avatarUrl:
+      'https://yt3.ggpht.com/-R8NXw9hHRk0/AAAAAAAAAAI/AAAAAAAAAAA/HzrsWT1pfsA/s100-c-k-no-mo-rj-c0xffffff/photo.jpg?sz=64',
     name: 'Aimeê Ferreira',
   },
   {
     color: '#FFA000',
     id: 'dc53fc4f621c80bdc2fa0329a6123708',
     memberOf: ['0bd010f641291705095902aaebd41824'],
+    avatarUrl:
+      'https://lh5.googleusercontent.com/-AdAuYPgfTpg/AAAAAAAAAAI/AAAAAAAANvA/Wap7TH2odqA/photo.jpg?sz=64',
     name: 'Lucas de Senna',
   },
 ];

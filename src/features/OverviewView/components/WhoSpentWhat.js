@@ -27,7 +27,11 @@ const whoSpentWhat = props => (
         </ListItem>
       );
     })}
-    <ListItem key={`whoSpentWhat-total`} classes={{ root: sass.item }}>
+    <ListItem
+      key={`whoSpentWhat-total`}
+      classes={{ root: sass.item }}
+      divider={true}
+    >
       <ListItemText classes={{ primary: sass.itemText }} primary="Total" />
       <div className={sass.itemValue}>{props.totalValue}</div>
     </ListItem>

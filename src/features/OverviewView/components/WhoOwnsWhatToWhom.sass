@@ -1,1 +1,33 @@
-.WhoOwnWhatToWhom
+@import 'colors.sass'
+@import 'effects.sass'
+  
+.WhoOwnsWhatToWhom
+  .transaction
+
+  .transactionDebtor,
+  .transactionCreditor
+    box-shadow: $box-shadow
+    margin: 0
+    position: relative
+    z-index: 2
+
+  .transactionValue
+    flex-grow: 1
+    text-align: right
+    background: $primary
+    color: $white
+    height: 32px
+    line-height: 32px
+    padding: 0 4px 0 8px
+    margin-left: -24px
+
+    &Head
+      border-style: solid
+      border-width: 16px
+      height: 0
+      width: 0
+      border-right: 0
+      border-top-color: $white
+      border-bottom-color: $white
+      border-left-color: $primary
+      margin-right: 8px
