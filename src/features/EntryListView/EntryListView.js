@@ -1,16 +1,21 @@
 // @flow
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
-import styles from './EntryListView.sass';
-import EntryList from './EntryList';
+import sass from './EntryListView.sass';
+import EntryList from './components/EntryList';
 import AddIcon from '@material-ui/icons/Add';
 import Button from '@material-ui/core/Button';
-import AddEntryModal from './AddEntryModal';
+import AddEntryModal from './components/AddEntryModal';
 
-import CircleType from 'types/Circle.type';
+import { EntryType } from 'types';
+
+const mapStateToProps = state => ({
+  entries: Object.values(state.activeCircle.entries),
+});
 
 type Props = {
-  circle: CircleType,
+  entries: EntryType[],
 };
 
 class CircleView extends Component<Props> {
@@ -23,10 +28,11 @@ class CircleView extends Component<Props> {
   handleCloseModal = () => this.setState({ isModalOpen: false });
 
   render() {
-    return this.props.circle ? (
-      <div className={styles.EntryListView}>
-        <EntryList entries={this.props.circle.entries} />
+    return (
+      <div className={sass.EntryListView}>
+        <EntryList entries={this.props.entries} />
         <Button
+          className={sass.addEntryButton}
           variant="fab"
           key="addEntryButton"
           onClick={this.handleOpenModal}
@@ -38,10 +44,8 @@ class CircleView extends Component<Props> {
           onRequestClose={this.handleCloseModal}
         />
       </div>
-    ) : (
-      ''
     );
   }
 }
 
-export default CircleView;
+export default connect(mapStateToProps)(CircleView);

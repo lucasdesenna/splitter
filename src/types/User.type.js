@@ -12,8 +12,6 @@ class UserType {
   name: string;
   color: string;
   memberOf: string[];
-  absoluteValue: number = 0;
-  relativeValue: number = 0;
 
   constructor(userDataType: UserDataType) {
     this.id = userDataType.id;

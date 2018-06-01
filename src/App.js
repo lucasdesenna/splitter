@@ -2,16 +2,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import styles from './App.sass';
 import EntryListView from './features/EntryListView/EntryListView';
 import OverviewView from './features/OverviewView/OverviewView';
 
+import sass from './App.sass';
+
 // import { fakeCircleData } from 'fakeData';
-import CircleRepository from 'repositories/Circle.repo';
+import circleRepo from 'repositories/Circle.repo';
 import { setActiveCircle } from 'containers/activeCircle.actions';
 
 const mapStateToProps = state => ({
-  activeCircle: state.activeCircle,
+  circle: state.activeCircle.circle,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -19,21 +20,21 @@ const mapDispatchToProps = dispatch => ({
     dispatch(setActiveCircle(circleData));
   },
 });
+
 class App extends Component {
   componentDidMount() {
-    CircleRepository.get().then(circleData => {
+    circleRepo.get().then(circleData => {
       this.props.dispatchSetActiveCircle(circleData);
     });
-    // this.props.dispatchSetActiveCircle(fakeCircleData);
   }
 
-  isCircleLoaded = () => !!this.props.activeCircle.id;
+  isCircleLoaded = () => !!this.props.circle && !!this.props.circle.id;
 
   render() {
     return this.isCircleLoaded() ? (
-      <div className={styles.App}>
-        <EntryListView circle={this.props.activeCircle} />
-        <OverviewView circle={this.props.activeCircle} />
+      <div className={sass.App}>
+        <EntryListView />
+        <OverviewView />
       </div>
     ) : (
       <div>loading</div>

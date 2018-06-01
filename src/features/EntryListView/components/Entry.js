@@ -4,9 +4,8 @@ import React from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
-import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 
-import styles from './Entry.sass';
+import sass from './Entry.sass';
 import EntryType from 'types/Entry.type';
 
 type Props = {
@@ -14,7 +13,7 @@ type Props = {
 };
 
 const entry = (props: Props) => (
-  <ListItem>
+  <ListItem classes={{ root: sass.Entry }}>
     <Avatar src={'images/ok-128.jpg'} />
     <ListItemText
       primary={props.entryData.description}
@@ -24,7 +23,7 @@ const entry = (props: Props) => (
           : 'sem tags'
       }
     />
-    <ListItemSecondaryAction>{props.entryData.value}</ListItemSecondaryAction>
+    <div className={sass.entryValue}>{props.entryData.value}</div>
   </ListItem>
 );
 

@@ -460,7 +460,7 @@ You can also use it with `async` / `await` syntax if you prefer it.
 
 ### With React Router
 
-If you are using React Router check out [this tutorial](http://serverless-stack.com/chapters/code-splitting-in-create-react-app.html) on how to use code splitting with it. You can find the companion GitHub repository [here](https://github.com/AnomalyInnovations/serverless-stack-demo-client/tree/code-splitting-in-create-react-app).
+If you are using React Router check out [this tutorial](http://serverless-stack.com/chapters/code-splitting-in-create-react-app.html) on how to use code splitting with it. You can find the companion GitHub Repo [here](https://github.com/AnomalyInnovations/serverless-stack-demo-client/tree/code-splitting-in-create-react-app).
 
 ## Adding a Stylesheet
 
@@ -957,12 +957,12 @@ using `fetch()` to access it.
 
 ### Node
 Check out [this tutorial](https://www.fullstackreact.com/articles/using-create-react-app-with-a-server/).
-You can find the companion GitHub repository [here](https://github.com/fullstackreact/food-lookup-demo).
+You can find the companion GitHub Repo [here](https://github.com/fullstackreact/food-lookup-demo).
 
 ### Ruby on Rails
 
 Check out [this tutorial](https://www.fullstackreact.com/articles/how-to-get-create-react-app-to-work-with-your-rails-api/).
-You can find the companion GitHub repository [here](https://github.com/fullstackreact/food-lookup-demo-rails).
+You can find the companion GitHub Repo [here](https://github.com/fullstackreact/food-lookup-demo-rails).
 
 ## Proxying API Requests in Development
 
@@ -1220,7 +1220,7 @@ By default, when you run `npm test`, Jest will only run the tests related to fil
 
 Jest will always explicitly mention that it only ran tests related to the files changed since the last commit. You can also press `a` in the watch mode to force Jest to run all tests.
 
-Jest will always run all tests on a [continuous integration](#continuous-integration) server or if the project is not inside a Git or Mercurial repository.
+Jest will always run all tests on a [continuous integration](#continuous-integration) server or if the project is not inside a Git or Mercurial Repo.
 
 ### Writing Tests
 
@@ -1434,8 +1434,8 @@ Popular CI servers already set the environment variable `CI` by default but you 
 ### On CI servers
 #### Travis CI
 
-1. Following the [Travis Getting started](https://docs.travis-ci.com/user/getting-started/) guide for syncing your GitHub repository with Travis.  You may need to initialize some settings manually in your [profile](https://travis-ci.org/profile) page.
-1. Add a `.travis.yml` file to your git repository.
+1. Following the [Travis Getting started](https://docs.travis-ci.com/user/getting-started/) guide for syncing your GitHub Repo with Travis.  You may need to initialize some settings manually in your [profile](https://travis-ci.org/profile) page.
+1. Add a `.travis.yml` file to your git Repo.
 ```
 language: node_js
 node_js:
@@ -2064,7 +2064,7 @@ Choose `build` as the path to deploy.
 With this setup Netlify will build and deploy when you push to git or open a pull request:
 
 1. [Start a new netlify project](https://app.netlify.com/signup)
-2. Pick your Git hosting service and select your repository
+2. Pick your Git hosting service and select your Repo
 3. Click `Build your site`
 
 **Support for client-side routing:**

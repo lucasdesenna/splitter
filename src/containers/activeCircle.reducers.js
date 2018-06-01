@@ -5,7 +5,7 @@ import CircleType from 'types/Circle.type';
 const activeCircle = (activeCircle = {}, action) => {
   switch (action.type) {
     case actions.SET_ACTIVE_CIRCLE:
-      return new CircleType(action.circle);
+      return action.circleData;
 
     case actions.ADD_USER:
       return new CircleType({

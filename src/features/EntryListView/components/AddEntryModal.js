@@ -5,7 +5,7 @@ import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import TextField from '@material-ui/core/TextField';
 
-// import EntryRepository from 'repositories/Entry.repo';
+// import EntryRepo from 'repositories/Entry.repo';
 import { addEntry } from 'containers/activeCircle.actions';
 
 const mapStateToProps = state => ({
@@ -15,7 +15,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   dispatchAddEntry: entryData => {
     dispatch(addEntry(entryData));
-    // EntryRepository.add(entryData);
+    // EntryRepo.add(entryData);
   },
 });
 

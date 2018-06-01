@@ -4,7 +4,7 @@ import { MuiThemeProvider } from '@material-ui/core/styles';
 import { Provider } from 'react-redux';
 import store from 'store';
 
-import './index.css';
+import './index.sass';
 import App from './App';
 import theme from './theme';
 import registerServiceWorker from './registerServiceWorker';

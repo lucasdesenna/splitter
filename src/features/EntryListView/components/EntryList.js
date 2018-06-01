@@ -5,7 +5,7 @@ import moment from 'moment';
 import List from '@material-ui/core/List';
 import ListSubheader from '@material-ui/core/ListSubheader';
 
-import styles from './EntryList.sass';
+import sass from './EntryList.sass';
 import Entry from './Entry';
 import EntryType from 'types/Entry.type';
 
@@ -71,9 +71,7 @@ const entriesByYearAndMont = entryList => {
 };
 
 const entryList = (props: Props) => (
-  <List className={styles.EntryList}>
-    {entriesByYearAndMont(props.entries)}
-  </List>
+  <List className={sass.EntryList}>{entriesByYearAndMont(props.entries)}</List>
 );
 
 export default entryList;

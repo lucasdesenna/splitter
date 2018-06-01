@@ -1,16 +1,25 @@
 // @flow
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import Drawer from '@material-ui/core/Drawer';
 
-import CircleType from 'types/Circle.type';
+import { CircleType, UserType } from 'types';
 
-import OverviewBar from './OverviewBar';
-import WhoSpentWhat from './WhoSpentWhat';
-import WhoOwnsWhatToWhom from './WhoOwnsWhatToWhom';
+import OverviewBar from './components/OverviewBar';
+import WhoSpentWhat from './components/WhoSpentWhat';
+import WhoOwnsWhatToWhom from './components/WhoOwnsWhatToWhom';
+
+import sass from './OverviewView.sass';
+
+const mapStateToProps = state => ({
+  circle: state.activeCircle.circle,
+  users: Object.values(state.activeCircle.users),
+});
 
 type Props = {
   circle: CircleType,
+  users: UserType[],
 };
 
 class OverviewView extends Component<Props> {
@@ -18,30 +27,59 @@ class OverviewView extends Component<Props> {
     isDrawerOpen: false,
   };
 
-  handleToggleDrawer = () =>
+  handleToggleDrawer = e => {
+    e.preventDefault();
+    e.stopPropagation();
+
     this.setState({ isDrawerOpen: !this.state.isDrawerOpen });
+  };
+
+  getUsersWithValueData = () => {
+    const { circle, users } = this.props;
+
+    const circleMeanValue = circle.totalValue / users.length;
+
+    return users
+      .map(user => ({
+        ...user,
+        value: circle.userValues[user.id],
+        relativeValue: parseFloat(
+          (circle.userValues[user.id] - circleMeanValue).toFixed(2)
+        ),
+        proportionalValue: parseFloat(
+          (circle.userValues[user.id] / circle.totalValue).toFixed(2)
+        ),
+      }))
+      .sort((a, b) => b.value - a.value);
+  };
 
   render() {
+    const usersWithValueData = this.getUsersWithValueData();
+    const creditors = usersWithValueData.filter(user => user.relativeValue > 0);
+    const debtors = usersWithValueData.filter(user => user.relativeValue < 0);
+
     return (
-      <div>
+      <React.Fragment>
         <OverviewBar
-          circle={this.props.circle}
+          usersWithValueData={usersWithValueData}
           onClick={this.handleToggleDrawer}
         />
         <Drawer
+          classes={{ modal: sass.OverviewModal, paper: sass.drawer }}
           width={200}
           anchor="right"
           open={this.state.isDrawerOpen}
           onClose={this.handleToggleDrawer}
         >
-          <div onClick={this.handleToggleDrawer}>
-            <WhoSpentWhat users={this.props.circle.users} />
-            <WhoOwnsWhatToWhom circle={this.props.circle} />
-          </div>
+          <WhoSpentWhat
+            usersWithValueData={usersWithValueData}
+            totalValue={this.props.circle.totalValue}
+          />
+          <WhoOwnsWhatToWhom creditors={creditors} debtors={debtors} />
         </Drawer>
-      </div>
+      </React.Fragment>
     );
   }
 }
 
-export default OverviewView;
+export default connect(mapStateToProps)(OverviewView);

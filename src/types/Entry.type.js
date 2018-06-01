@@ -1,6 +1,7 @@
 // @flow
 
 export type EntryDataType = {
+  id: string,
   currency: ?string,
   description: string,
   isoTimestamp: ?string,
@@ -10,6 +11,7 @@ export type EntryDataType = {
 };
 
 class EntryType {
+  id: string;
   currency: string;
   description: string;
   isoTimestamp: string;
@@ -18,6 +20,7 @@ class EntryType {
   value: number;
 
   constructor(entryDataType: EntryDataType) {
+    this.id = entryDataType.id;
     this.currency = entryDataType.currency || 'BRL';
     this.tags = entryDataType.tags || [];
     this.isoTimestamp = entryDataType.isoTimestamp || new Date().toISOString();
