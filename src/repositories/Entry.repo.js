@@ -12,9 +12,9 @@ const entryRepo = {
       .then(snapshot => snapshot.val());
   },
   add: entryData => {
-    return BackendService.post('entries', entryData).catch(error =>
-      console.error(error)
-    );
+    return BackendService.post('entries', entryData, {
+      headers: { 'Content-Type': 'application/json' },
+    }).catch(error => console.error(error));
   },
 };
 

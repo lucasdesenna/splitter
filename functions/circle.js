@@ -36,7 +36,10 @@ const get = (request, response) => {
         return Promise.all([_getUsers(circle), _getEntries(circle)]);
       })
       .then(data => {
-        circle = { ...circle, users: data[0], entries: data[1] };
+        circle = Object.assign({}, circle, {
+          users: data[0],
+          entries: data[1],
+        });
         response.send(circle);
         return console.log(circle);
       })

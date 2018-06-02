@@ -36,6 +36,7 @@ class CircleView extends Component<Props> {
         <Button
           className={sass.addEntryButton}
           variant="fab"
+          color="primary"
           key="addEntryButton"
           onClick={this.handleOpenModal}
         >

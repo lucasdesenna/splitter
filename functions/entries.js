@@ -22,16 +22,23 @@ const get = (request, response) => {
 
 const post = (request, response) => {
   if (request.body) {
+    const payload = request.body;
+
     const entryRef = firebase
       .database()
-      .ref(`/entries`)
+      .ref(`/entries/${payload.circleId}`)
       .push();
 
+    const entry = Object.assign({}, payload, {
+      id: entryRef.key,
+      unixTimestamp: firebase.database.ServerValue.TIMESTAMP,
+    });
+
     entryRef
-      .set(request.body)
+      .set(entry)
       .then(sucess => {
-        response.status(200).send(sucess);
-        return console.log(sucess);
+        response.status(200).send(entry);
+        return console.log(`SUCCESS: wrote entry to ${entryRef.key}`);
       })
       .catch(error => {
         response.status(500).send(error);

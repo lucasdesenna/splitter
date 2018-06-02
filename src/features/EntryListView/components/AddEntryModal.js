@@ -1,11 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import Button from '@material-ui/core/Button';
-import Dialog from '@material-ui/core/Dialog';
-import TextField from '@material-ui/core/TextField';
+import {
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  TextField,
+} from '@material-ui/core';
 
-// import EntryRepo from 'repositories/Entry.repo';
+import EntryRepo from 'repositories/Entry.repo';
+import EntryType from 'types/Entry.type';
 import { addEntry } from 'containers/activeCircle.actions';
 
 const mapStateToProps = state => ({
@@ -15,94 +21,91 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   dispatchAddEntry: entryData => {
     dispatch(addEntry(entryData));
-    // EntryRepo.add(entryData);
+    EntryRepo.add(entryData);
   },
 });
 
-const isDescriptionValid = entry =>
-  (entry.description: string) && entry.description.length >= 5;
-
-const isValueValid = entry =>
-  (entry.value: string) && parseFloat(entry.value) > 0;
-
-const validateEntry = entry => isDescriptionValid(entry) && isValueValid(entry);
-
 class AddEntryModal extends Component {
   state = {
-    entry: {},
+    entryDescription: '',
+    entryValue: '',
     isEntryValid: false,
   };
 
-  handleEntrySubmission = () => {
-    const newEntry = {
-      ...this.state.entry,
-      userId: this.props.activeUser.id,
-    };
+  isEntryValid = () =>
+    this.state.entryDescription.length >= 5 &&
+    parseFloat(this.state.entryValue) > 0;
 
-    this.props.dispatchAddEntry(newEntry);
+  handleEntrySubmission = () => {
+    this.props.dispatchAddEntry(
+      new EntryType({
+        description: this.state.entryDescription,
+        value: this.state.entryValue,
+        userId: this.props.activeUser.id,
+      })
+    );
     this.props.onRequestClose();
   };
 
   handleEntryDescriptionChange = event => {
-    const newEntry = {
-      ...this.state.entry,
-      description: event.target.value,
-    };
+    event.preventDefault();
+    const entryDescription = event.target.value;
 
     this.setState({
-      entry: newEntry,
-      isEntryValid: validateEntry(newEntry),
+      entryDescription: entryDescription,
     });
   };
 
   handleEntryValueChange = event => {
-    const newEntry = {
-      ...this.state.entry,
-      value: parseFloat(event.target.value),
-    };
+    event.preventDefault();
+    const entryValue = Math.max(parseFloat(event.target.value), 0);
 
     this.setState({
-      entry: newEntry,
-      isEntryValid: validateEntry(newEntry),
+      entryValue: entryValue.toString(),
     });
   };
 
   render() {
-    const actions = [
-      <Button
-        label="Cancel"
-        primary={true}
-        onClick={this.props.onRequestClose}
-      />,
-      <Button
-        label="Add"
-        primary={true}
-        onClick={this.handleEntrySubmission}
-        disabled={!this.state.isEntryValid}
-      />,
-    ];
-
     return (
       <Dialog
         key="addEntryDialog"
-        title="Add Entry"
-        actions={actions}
-        modal={false}
         open={this.props.isModalOpen}
+        onClose={this.props.onRequestClose}
       >
-        <TextField
-          id="entryDescription"
-          hintText="Description"
-          fullWidth={true}
-          onChange={this.handleEntryDescriptionChange}
-        />
-        <TextField
-          id="entryValue"
-          hintText="Value"
-          type="number"
-          fullWidth={true}
-          onChange={this.handleEntryValueChange}
-        />
+        <DialogTitle id="form-dialog-title">Cadastro de despesa</DialogTitle>
+        <DialogContent>
+          <TextField
+            id="entryDescription"
+            autoFocus={true}
+            placeholder="Descrição"
+            fullWidth={true}
+            value={this.state.entryDescription}
+            onChange={this.handleEntryDescriptionChange}
+            margin="normal"
+          />
+          <TextField
+            id="entryValue"
+            type="number"
+            placeholder="Valor"
+            fullWidth={true}
+            value={this.state.entryValue}
+            onChange={this.handleEntryValueChange}
+            margin="normal"
+            // startAdornment={<InputAdornment position="start">$</InputAdornment>}
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={this.props.onRequestClose} color="primary">
+            Cancelar
+          </Button>
+          <Button
+            onClick={this.handleEntrySubmission}
+            color="primary"
+            disabled={!this.isEntryValid()}
+          >
+            Cadastrar
+          </Button>
+        </DialogActions>
       </Dialog>
     );
   }

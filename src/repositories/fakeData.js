@@ -6,9 +6,11 @@ export const fakeCircleData = {
     'dc53fc4f621c80bdc2fa0329a6123708',
   ],
   entries: [
-    '0cc175b9c0f1b6a831c399e269772661',
-    '92eb5ffee6ae2fec3ad71c777531578f',
-    '4a8a08f09d37b73795649038408b5f33',
+    '-LDy_Sm2meXSzyhAoSAg',
+    '-LDy_SopSBp-qdRp5PMJ',
+    '-LDy_Sr_gf90SNpQEBwV',
+    '-LDy_SuKB2bNLS_nOd6E',
+    '-LDy_Sx9zDelJex6sq_E',
   ],
   totalValue: 4824.18,
   userValues: {
@@ -17,35 +19,57 @@ export const fakeCircleData = {
   },
 };
 
-export const fakeEntriesData = [
-  {
-    id: '0cc175b9c0f1b6a831c399e269772661',
+export const fakeEntriesData = {
+  '-LDy_Sm2meXSzyhAoSAg': {
+    id: '-LDy_Sm2meXSzyhAoSAg',
     circleId: '0bd010f641291705095902aaebd41824',
     currency: 'BRL',
     description: 'Aluguel',
-    isoTimestamp: '2017-11-20T20:12:59Z',
+    unixTimestamp: 1527910882596,
     userId: 'ce502e691b0566d339e5e7ecd3bc0205',
-    value: 2545,
+    value: 2135,
   },
-  {
-    id: '92eb5ffee6ae2fec3ad71c777531578f',
+  '-LDy_SopSBp-qdRp5PMJ': {
+    id: '-LDy_SopSBp-qdRp5PMJ',
+    unixTimestamp: 1527910882774,
     circleId: '0bd010f641291705095902aaebd41824',
     currency: 'BRL',
-    description: 'Aluguel',
-    isoTimestamp: '2017-09-20T05:07:23Z',
-    userId: 'dc53fc4f621c80bdc2fa0329a6123708',
-    value: 2150,
+    description: 'IPTU 2017',
+    tags: ['iptu'],
+    userId: 'ce502e691b0566d339e5e7ecd3bc0205',
+    value: 106.58,
   },
-  {
-    id: '4a8a08f09d37b73795649038408b5f33',
+  '-LDy_Sr_gf90SNpQEBwV': {
+    id: '-LDy_Sr_gf90SNpQEBwV',
+    unixTimestamp: 1527910882950,
     circleId: '0bd010f641291705095902aaebd41824',
     currency: 'BRL',
-    description: 'Instalação do fogão',
-    isoTimestamp: '2017-10-20T16:26:06Z',
-    userId: 'dc53fc4f621c80bdc2fa0329a6123708',
-    value: 129.18,
+    description: 'Condomínio set/2017',
+    tags: ['condominio'],
+    userId: 'ce502e691b0566d339e5e7ecd3bc0205',
+    value: 643.2,
   },
-];
+  '-LDy_SuKB2bNLS_nOd6E': {
+    id: '-LDy_SuKB2bNLS_nOd6E',
+    unixTimestamp: 1527910883126,
+    circleId: '0bd010f641291705095902aaebd41824',
+    currency: 'BRL',
+    description: 'Mercado',
+    tags: ['mercado'],
+    userId: 'ce502e691b0566d339e5e7ecd3bc0205',
+    value: 904.17,
+  },
+  '-LDy_Sx9zDelJex6sq_E': {
+    id: '-LDy_Sx9zDelJex6sq_E',
+    unixTimestamp: 1527910883307,
+    circleId: '0bd010f641291705095902aaebd41824',
+    currency: 'BRL',
+    description: 'Mercado',
+    tags: ['mercado'],
+    userId: 'ce502e691b0566d339e5e7ecd3bc0205',
+    value: 877.53,
+  },
+};
 
 export const fakeUsersData = [
   {

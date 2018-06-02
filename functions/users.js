@@ -8,18 +8,21 @@ const get = (request, response) => {
       .ref(`/users/${request.query.id}`)
       .once('value')
       .then(snapshot => {
-         response.send(snapshot.val());
+        response.send(snapshot.val());
+        return console.log(`SUCCESS: got user ${request.query.id}`);
       })
       .catch(reason => console.warn(reason));
   } else {
-    response.status(500).send('missing param: "id"');
+    const reason = 'missing param: "id"';
+    response.status(500).send(reason);
+    return console.warn(reason);
   }
 };
 
-exports.users = functions.https.onRequest( ( request, response ) => {
-  switch ( request.method ) {
+exports.users = functions.https.onRequest((request, response) => {
+  switch (request.method) {
     case 'GET':
-      get( request, response );
+      get(request, response);
       break;
 
     // case 'POST':
@@ -29,4 +32,4 @@ exports.users = functions.https.onRequest( ( request, response ) => {
     default:
       response.end();
   }
-} );
+});

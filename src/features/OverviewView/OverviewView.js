@@ -71,11 +71,11 @@ class OverviewView extends Component<Props> {
           open={this.state.isDrawerOpen}
           onClose={this.handleToggleDrawer}
         >
+          <WhoOwnsWhatToWhom creditors={creditors} debtors={debtors} />
           <WhoSpentWhat
             usersWithValueData={usersWithValueData}
             totalValue={this.props.circle.totalValue}
           />
-          <WhoOwnsWhatToWhom creditors={creditors} debtors={debtors} />
         </Drawer>
       </React.Fragment>
     );

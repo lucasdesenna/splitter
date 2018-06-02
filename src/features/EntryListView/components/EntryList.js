@@ -17,7 +17,7 @@ type Props = {
 const groupBy = (entries: EntryType[], dateFormat) => {
   const grouped = [];
   const temp = entries.reduce((groupedList, entry) => {
-    const groupValue = moment(entry.isoTimestamp).format(dateFormat);
+    const groupValue = moment(entry.unixTimestamp).format(dateFormat);
 
     (groupedList[groupValue] = groupedList[groupValue] || []).push(entry);
 
@@ -45,7 +45,7 @@ const groupByYearAndMonth = (entries: EntryType[]): any[] => {
 };
 
 const sortByTimestamp = (a: EntryType, b: EntryType): number =>
-  new Date(a.isoTimestamp).getTime() - new Date(b.isoTimestamp).getTime();
+  new Date(a.unixTimestamp).getTime() - new Date(b.unixTimestamp).getTime();
 
 const entriesByYearAndMont = (entries, users) => {
   const groupedByYearAndMonth = groupByYearAndMonth(
