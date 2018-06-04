@@ -1,10 +1,7 @@
 export const fakeCircleData = {
   id: '0bd010f641291705095902aaebd41824',
   name: 'Casinha',
-  users: [
-    'ce502e691b0566d339e5e7ecd3bc0205',
-    'dc53fc4f621c80bdc2fa0329a6123708',
-  ],
+  users: ['ce502e691b0566d339e5e7ecd3bc0205', 'F4KGv14igDaKYQBl0K51GCpWKMt2'],
   entries: [
     '-LDy_Sm2meXSzyhAoSAg',
     '-LDy_SopSBp-qdRp5PMJ',
@@ -15,7 +12,7 @@ export const fakeCircleData = {
   totalValue: 4824.18,
   userValues: {
     ce502e691b0566d339e5e7ecd3bc0205: 2545,
-    dc53fc4f621c80bdc2fa0329a6123708: 2279.18,
+    F4KGv14igDaKYQBl0K51GCpWKMt2: 2279.18,
   },
 };
 
@@ -71,8 +68,8 @@ export const fakeEntriesData = {
   },
 };
 
-export const fakeUsersData = [
-  {
+export const fakeUsersData = {
+  ce502e691b0566d339e5e7ecd3bc0205: {
     color: '#689F38',
     id: 'ce502e691b0566d339e5e7ecd3bc0205',
     memberOf: ['0bd010f641291705095902aaebd41824'],
@@ -80,12 +77,13 @@ export const fakeUsersData = [
       'https://yt3.ggpht.com/-R8NXw9hHRk0/AAAAAAAAAAI/AAAAAAAAAAA/HzrsWT1pfsA/s100-c-k-no-mo-rj-c0xffffff/photo.jpg?sz=64',
     name: 'Aimeê Ferreira',
   },
-  {
-    color: '#FFA000',
-    id: 'dc53fc4f621c80bdc2fa0329a6123708',
-    memberOf: ['0bd010f641291705095902aaebd41824'],
+  F4KGv14igDaKYQBl0K51GCpWKMt2: {
     avatarUrl:
-      'https://lh5.googleusercontent.com/-AdAuYPgfTpg/AAAAAAAAAAI/AAAAAAAANvA/Wap7TH2odqA/photo.jpg?sz=64',
+      'https://lh5.googleusercontent.com/-AdAuYPgfTpg/AAAAAAAAAAI/AAAAAAAANvA/Wap7TH2odqA/photo.jpg',
+    createdAt: '1528077898000',
+    email: 'lucasdesenna@gmail.com',
+    id: 'F4KGv14igDaKYQBl0K51GCpWKMt2',
+    lastLoginAt: '1528077898000',
     name: 'Lucas de Senna',
   },
-];
+};

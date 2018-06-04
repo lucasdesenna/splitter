@@ -9,11 +9,34 @@ const config = {
   messagingSenderId: '910645507282',
 };
 
+const authProvider = new firebase.auth.GoogleAuthProvider();
+authProvider.addScope(
+  'https://www.googleapis.com/auth/plus.me,https://www.googleapis.com/auth/userinfo.profile'
+);
+
 const firebaseService = {
   init: () => {
     firebase.initializeApp(config);
+    firebase.auth().languageCode = 'pt-BR';
+    firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL);
   },
   database: firebase.database,
+  signIn: () =>
+    new Promise((resolve, reject) => {
+      firebase
+        .auth()
+        .signInWithPopup(authProvider)
+        .then(response => {
+          resolve(response);
+        })
+        .catch(error => {
+          console.warn(error);
+          reject(error);
+        });
+    }),
+  onAuthStateChanged: callback => {
+    firebase.auth().onAuthStateChanged(callback);
+  },
 };
 
 export default firebaseService;

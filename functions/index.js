@@ -11,8 +11,10 @@ const config = {
 firebase.initializeApp(config);
 
 const { circle } = require('./circle');
+const { user } = require('./user');
 const { entries, getEntriesByUser } = require('./entries');
 
 exports.circle = circle;
+exports.user = user;
 exports.entries = entries;
 exports.getEntriesByUser = getEntriesByUser;

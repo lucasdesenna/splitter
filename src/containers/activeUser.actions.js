@@ -7,3 +7,9 @@ export const setActiveUser = (userData: UserDataType) => ({
   type: SET_ACTIVE_USER,
   user: new UserType(userData),
 });
+
+export const CLEAR_ACTIVE_USER = 'SET_ACTIVE_USER';
+export const clearActiveUser = () => ({
+  type: CLEAR_ACTIVE_USER,
+  user: {},
+});

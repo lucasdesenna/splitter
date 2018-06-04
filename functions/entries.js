@@ -38,14 +38,19 @@ const post = (request, response) => {
       .set(entry)
       .then(sucess => {
         response.status(200).send(entry);
+
         return console.log(`SUCCESS: wrote entry to ${entryRef.key}`);
       })
       .catch(error => {
         response.status(500).send(error);
+
         return console.error(error);
       });
   } else {
-    response.status(500).send('missing param: "body"');
+    const error = 'missing param: "body"';
+
+    response.status(500).send(error);
+    return console.error(error);
   }
 };
 

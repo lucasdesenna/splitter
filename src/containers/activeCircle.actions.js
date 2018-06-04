@@ -15,14 +15,14 @@ export const setActiveCircle = (circleData: {
   type: SET_ACTIVE_CIRCLE,
   circleData: {
     circle: new CircleType(circleData.circle),
-    users: circleData.users.reduce(
+    users: Object.values(circleData.users).reduce(
       (users, userData) => ({
         ...users,
         [userData.id]: new UserType(userData),
       }),
       {}
     ),
-    entries: circleData.entries.reduce(
+    entries: Object.values(circleData.entries).reduce(
       (entries, entryData) => ({
         ...entries,
         [entryData.id]: new EntryType(entryData),
