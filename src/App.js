@@ -1,26 +1,24 @@
 // @flow
 import React from 'react';
 import { connect } from 'react-redux';
-import { Router, Route } from 'react-router-dom';
+import { Router, Route, Redirect } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
 
 import UserRepo from 'repositories/User.repo';
-import { setActiveUser, clearActiveUser } from 'containers/activeUser.actions';
+import { clearActiveUser } from 'containers/activeUser.actions';
 
 import MainView from 'features/MainView';
+import SignInView from 'features/SignInView';
 
-import sass from './App.sass';
+import PrivateRoute from 'components/PrivateRoute';
 
 const history = createBrowserHistory();
 
 const mapStateToProps = state => ({
-  activeUser: state.activeUser,
+  hasActiveUser: !!state.activeUser && !!state.activeUser.id,
 });
 
 const mapDispatchToProps = dispatch => ({
-  dispatchSetActiveUser: userData => {
-    dispatch(setActiveUser(userData));
-  },
   dispatchClearActiveUser: () => {
     dispatch(clearActiveUser());
   },
@@ -30,18 +28,11 @@ class App extends React.Component {
   authChangeListener: any;
 
   componentDidMount() {
-    const { dispatchSetActiveUser, dispatchClearActiveUser } = this.props;
-    const login = userData => {
-      dispatchSetActiveUser(userData);
-      history.push('/home');
-    };
+    const { dispatchClearActiveUser } = this.props;
 
     this.authChangeListener = UserRepo.listenForAuthChange(user => {
-      if (user) {
-        UserRepo.get(user.uid).then(login);
-      } else {
+      if (!user) {
         dispatchClearActiveUser();
-        UserRepo.signIn().then(login);
       }
     });
   }
@@ -52,18 +43,32 @@ class App extends React.Component {
 
   render() {
     return (
-      <Router className={sass.App} history={history}>
+      <Router history={history}>
         <React.Fragment>
           <Route
             exact
             path="/"
-            render={props => <div>Splitter is running</div>}
+            render={props =>
+              this.props.hasActiveUser ? (
+                <Redirect to="/home" />
+              ) : (
+                <Redirect to="/signin" />
+              )
+            }
           />
-          <Route path="/home" component={MainView} />
+          <Route path="/signin" component={SignInView} />
+          <PrivateRoute
+            path="/home"
+            allowEntry={this.props.hasActiveUser}
+            component={MainView}
+          />
         </React.Fragment>
       </Router>
     );
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App);

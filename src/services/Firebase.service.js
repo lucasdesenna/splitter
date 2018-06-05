@@ -34,6 +34,7 @@ const firebaseService = {
           reject(error);
         });
     }),
+  signOut: () => firebase.auth().signOut(),
   onAuthStateChanged: callback => {
     firebase.auth().onAuthStateChanged(callback);
   },

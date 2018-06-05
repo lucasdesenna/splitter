@@ -20,6 +20,7 @@ const mapDispatchToProps = dispatch => ({
 
 class MainView extends React.Component {
   componentDidMount() {
+    console.log('bunda');
     circleRepo.get().then(circleData => {
       this.props.dispatchSetActiveCircle(circleData);
     });
@@ -39,4 +40,7 @@ class MainView extends React.Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(MainView);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(MainView);
